@@ -2,6 +2,7 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using AnimalApi;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Quibble.Xunit;
 using Xunit;
 
 namespace AnimalApiIntegrationTests
@@ -35,6 +36,10 @@ namespace AnimalApiIntegrationTests
                 httpResponse.Content.Headers.ContentType.ToString()
             );
             // assert [🐶, 🐱]
+            JsonAssert.Equal(
+                @"[{""name"": ""Dog""}, {""name"": ""Cat""}]",
+                await httpResponse.Content.ReadAsStringAsync()
+                );
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalApi
@@ -7,7 +8,16 @@ namespace AnimalApi
         [Route("/api/animals")]
         public IActionResult Index()
         {
-            return Json("");
+            return Json(new List<Animal>()
+            {
+                new Animal {Name = "Dog"},
+                new Animal {Name = "Cat"}
+            });
         }
+    }
+
+    public class Animal
+    {
+        public string Name { get; set; }
     }
 }
