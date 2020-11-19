@@ -4,6 +4,8 @@ set -eo pipefail
 
 # Call me with `-d -n` to run unattended.
 
+: ${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"}
+
 source demo-magic.sh
 source ~/.profile
 
@@ -22,9 +24,8 @@ pei ""
 # Create the project dir.
 pe "# We need a place for the project"
 p "mkdir animal-api"
-solution_dir="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"
 p "cd animal-api"
-cd "$solution_dir"
+cd "$DEMO_DIR"
 pe "git init"
 pei ""
 
@@ -53,10 +54,12 @@ pe "# This is our 1st commit"
 pe "dotnet new gitignore"
 pe "git add ."
 pe "git commit --message \"Bootstrap Animal API\""
+git clean -fxd
 pei ""
 
 # Explore the skeleton within Jetbrains' Rider.
 pe "# Let's explore the skeleton app."
+pe "tree"
 pe "rider AnimalApi.sln"
 pei ""
 
