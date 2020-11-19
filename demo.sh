@@ -67,9 +67,72 @@ pei ""
 # Implement GET /api/animals with a fixed response #
 ####################################################
 
-pe "# TODO"
+pe "# Let's say we want to return animals now."
+pei "# Our API should look like this:
+pei "# GET /api/animals"
+pei "# -> 🐶 & 🐱"
 pei ""
 
+pe "# We need tests."
+pe "dotnet test"
+pe "# No tests. We must create an integration test suite."
+pe "dotnet new xunit --name AnimalApiIntegrationTests"
+pe "dotnet sln AnimalApi.sln add AnimalApiIntegrationTests"
+pe "dotnet add AnimalApiIntegrationTests package Microsoft.AspNetCore.Mvc.Testing --version 3.1"
+pe "dotnet add AnimalApiIntegrationTests reference AnimalApi"
+pe "dotnet test"
+pei ""
+
+pe "# Let's express our expectations through an integration test."
+pe "dotnet add AnimalApiIntegrationTests package Quibble.Xunit"
+pei ""
+
+pe "# Let's see it in action."
+pe "dotnet run --project AnimalApi"
+
+# Commit GET /api/animals with fixed response.
+pe "# This is our 2nd commit"
+pe "git add ."
+pe "git commit --message \"Return dog and cat on GET /api/animals\""
+pei ""
+
+################################
+# Return animals from database #
+################################
+
+pe "# Now that we can return static animals,"
+pei "# how about reading them from a database?"
+pei ""
+
+pe "# We need a couple of things for that:"
+pei "# * a test for our controller"
+pei "# * a DbContext<Animal>"
+pei "# * a running database server"
+pei "# * a connection to the database server"
+pei "# * something that creates a database and loads it with animals"
+pei ""
+
+pe "# We need a project for our unit testing our controller"
+pe "dotnet new xunit --name AnimalApiTests --framework netcoreapp3.1"
+pe "dotnet add AnimalApiTests reference AnimalApi"
+pe "dotnet sln AnimalApi.sln add AnimalApiTests"
+pei ""
+
+pe "# Off to the IDE! 🚁"
+
+pe "# We need a DbContext<Animal>"
+pe "dotnet add AnimalApi package Microsoft.EntityFrameworkCore.InMemory"
+pei ""
+
+pe "# Let's start a Postgres instance"
+pe "docker run --detach --rm --name animaldb --publish 5432:5432 --env POSTGRES_PASSWORD=secret postgres:13.1-alpine"
+pe "# Assert it is running"
+pe "docker run --rm -it --network host --env PGPASSWORD=secret --env PGUSER=postgres --env PGHOST=127.0.0.1 postgres:13.1-alpine psql --command '\l'"
+pei ""
+
+pe "# We need a connection to the database server"
+pe "dotnet add AnimalApi package Npgsql.EntityFrame workCore.PostgreSQL"
+pei ""
 
 ############
 # The end. #
