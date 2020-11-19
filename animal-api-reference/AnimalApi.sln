@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalApi", "AnimalApi\Anim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalApiIntegrationTests", "AnimalApiIntegrationTests\AnimalApiIntegrationTests.csproj", "{A1EFDEA1-3D71-4130-962F-CA4B9DC8781D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalApiTests", "AnimalApiTests\AnimalApiTests.csproj", "{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{A1EFDEA1-3D71-4130-962F-CA4B9DC8781D}.Release|x64.Build.0 = Release|Any CPU
 		{A1EFDEA1-3D71-4130-962F-CA4B9DC8781D}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1EFDEA1-3D71-4130-962F-CA4B9DC8781D}.Release|x86.Build.0 = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|x64.Build.0 = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Debug|x86.Build.0 = Debug|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|x64.ActiveCfg = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|x64.Build.0 = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|x86.ActiveCfg = Release|Any CPU
+		{04B9E9E7-2D7A-49EF-A5E8-C8129265AF4E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
