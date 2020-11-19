@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AnimalApi;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -29,6 +30,10 @@ namespace AnimalApiIntegrationTests
             // assert 200/Ok
             httpResponse.EnsureSuccessStatusCode();
             // assert Content-Type: application/json
+            Assert.StartsWith(
+                MediaTypeNames.Application.Json,
+                httpResponse.Content.Headers.ContentType.ToString()
+            );
             // assert [🐶, 🐱]
         }
     }
