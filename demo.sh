@@ -4,6 +4,9 @@ set -eo pipefail
 
 # Call me with `-d -n` to run unattended.
 
+source demo-magic.sh
+source ~/.profile
+
 : ${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"}
 
 if ! docker ps > /dev/null; then
@@ -26,16 +29,14 @@ if ! which rider > /dev/null; then
   exit 1;
 fi
 
-source demo-magic.sh
-source ~/.profile
+#########
+# Intro #
+#########
 
 clear
-
-# Intro
-pe "# Let's build something with .NET!"
-pe "# We want to build an API that gives us animals"
-pei "# 🐶 🐱"
-pe ""
+pe "# Let's build something with .NET! 👷 🚧"
+pe "# How about an API that returns animals? 🐶 🐱"
+pei ""
 
 ###############################
 # Create the project skeleton #
@@ -47,13 +48,12 @@ p "mkdir animal-api"
 p "cd animal-api"
 cd "$DEMO_DIR"
 pe "git init"
-pe ""
+pei ""
 
 # Create the .NET solution.
 pe "# We begin by creating a \"solution\"."
 pe "dotnet new solution --name AnimalApi"
-pe ""
-
+pei ""
 
 # Create the web API project.
 pe "# Now we create a web API project ..."
@@ -65,74 +65,75 @@ pe "dotnet sln AnimalApi.sln add AnimalApi"
 pe ""
 
 # Run the app for the 1st time.
+clear
 pei "# We've got a skeleton app."
 pe "# Let's run it 🏃"
 pe "dotnet run --project AnimalApi"
-pe ""
+pei ""
 
 # Explore the skeleton within Jetbrains' Rider.
 pe "# Let's explore the skeleton app."
 rm -rf AnimalApi/bin AnimalApi/obj
 pe "tree"
 pe "rider AnimalApi.sln"
-pe ""
-
-
-# notes:
-# * talk about Program & Startup
+pei ""
 
 # Commit project skeleton.
+clear
 pe "# This is our 1st commit"
 pe "dotnet new gitignore"
 pe "git add ."
 pe "git commit --message \"Bootstrap Animal API\""
 git clean -fxd
-pe ""
-
+pei ""
 
 ####################################################
 # Implement GET /api/animals with a fixed response #
 ####################################################
 
-pe "# Let's say we want to return animals now."
+pe "# Now we want to return animals."
 pei "# Our API should look like this:"
-pei "# GET /api/animals"
-pei "# -> 🐶 & 🐱"
+pei ""
+pei "# GET /api/animals HTTP/1.1"
+pei "#"
+pei "# HTTP/1.1 200 OK"
+pei "# Content-Type: application/json"
+pei "#"
+pei "# [ { 🐶 } , { 🐱 } ]"
 pe ""
 
-
-pe "# We need tests."
+pe "# We need tests to drive this."
 pe "dotnet test"
-pe "# No tests 🤷 We must create an integration test suite."
+pei "# No tests 🤷."
+pei "# An integration test suite is a good place to start."
 pe "dotnet new xunit --name AnimalApiIntegrationTests"
 pe "dotnet sln AnimalApi.sln add AnimalApiIntegrationTests"
 pe "dotnet add AnimalApiIntegrationTests package Microsoft.AspNetCore.Mvc.Testing --version 3.1"
 pe "dotnet add AnimalApiIntegrationTests package Quibble.Xunit"
 pe "dotnet add AnimalApiIntegrationTests reference AnimalApi"
 pe "dotnet test"
+pei "# Tests 🙌."
 pe ""
 
-
-pe "# Let's express our expectations through an integration test."
+pe "# Let's express our requirements through an integration test."
 pe ""
-
 
 # notes:
 # * create integration test inheriting from IClassFixture<WebApplicationFactory<Startup>>
 # * create controller
 # * create Animal {ID, Name}
 
+# Manually verify that it works as expected.
+clear
 pe "# Let's see the app in action."
 pe "dotnet run --project AnimalApi"
 pe ""
-
 
 # Commit GET /api/animals with fixed response.
 pe "# This is our 2nd commit"
 pe "git add ."
 pe "git commit --message \"Return dog and cat on GET /api/animals\""
 pe ""
-
 
 ##########################
 # Return animals from DB #
