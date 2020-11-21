@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-kitty_theme try snazzy ./launch-demo-screen.sh
+kitty_theme try snazzy tmux
 
