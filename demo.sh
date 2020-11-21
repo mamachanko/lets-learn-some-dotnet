@@ -4,7 +4,12 @@ set -eo pipefail
 
 # Call me with `-d -n` to run unattended.
 
-: ${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"}
+: "${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"}"
+
+if [[ ! -d $DEMO_DIR ]]; then
+  echo "DEMO_DIR $DEMO_DIR does not exist"
+  exit 1;
+fi
 
 if ! docker ps > /dev/null; then
   echo "docker is not running"
@@ -26,10 +31,21 @@ if ! which rider > /dev/null; then
   exit 1;
 fi
 
+
 source demo-magic.sh
 source ~/.profile
 
 clear
+
+cd "$DEMO_DIR"
+
+cat <<EOF > speakernotes
+
+Welcome!
+
+Let's do this.
+
+EOF
 
 # Intro
 pe "# Let's build something with .NET!"
@@ -45,7 +61,6 @@ pe ""
 pe "# We need a place for the project"
 p "mkdir animal-api"
 p "cd animal-api"
-cd "$DEMO_DIR"
 pe "git init"
 pe ""
 
