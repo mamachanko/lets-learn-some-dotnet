@@ -1,4 +1,6 @@
 using AnimalApi;
+using AnimalApi.Data;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace AnimalApiTests
@@ -6,17 +8,34 @@ namespace AnimalApiTests
     public class AnimalControllerTest
     {
         [Fact]
-        public void Get_ReturnsAnimals()
+        public void Get_WhenAnimalsInDB_ReturnsAnimals()
         {
-            var animalController = new AnimalController();
+            // A
+            var dbContextOptions = new DbContextOptionsBuilder<AnimalContext>()
+                .UseInMemoryDatabase("animal-test-db")
+                .Options;
 
-            var response = animalController.Index();
+            using (var animalContext = new AnimalContext(dbContextOptions))
+            {
+                animalContext.Database.EnsureCreated();
 
-            Assert.Collection(
-                response,
-                animal => Assert.Equal(new Animal() {Name = "Dog"}, animal),
-                animal => Assert.Equal(new Animal() {Name = "Cat"}, animal)
-            );
+                animalContext.Animals.Add(new Animal {Name = "test1", ID = 1});
+                animalContext.Animals.Add(new Animal {Name = "test2", ID = 2});
+                animalContext.SaveChanges();
+
+                var animalController = new AnimalController(animalContext);
+
+                // A
+                var animals = animalController.Get();
+
+                // A
+                Assert.Collection(
+                    animals,
+                    a => Assert.Equal(new Animal {Name = "test1", ID = 1}, a),
+                    a => Assert.Equal(new Animal {Name = "test2", ID = 2}, a)
+                );
+            }
+
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-reference/AnimalApi/AnimalApi.csproj": {}
+    "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-demo-6B5m/AnimalApi/AnimalApi.csproj": {}
   },
   "projects": {
-    "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-reference/AnimalApi/AnimalApi.csproj": {
+    "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-demo-6B5m/AnimalApi/AnimalApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-reference/AnimalApi/AnimalApi.csproj",
+        "projectUniqueName": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-demo-6B5m/AnimalApi/AnimalApi.csproj",
         "projectName": "AnimalApi",
-        "projectPath": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-reference/AnimalApi/AnimalApi.csproj",
+        "projectPath": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-demo-6B5m/AnimalApi/AnimalApi.csproj",
         "packagesPath": "/Users/floater/.nuget/packages/",
-        "outputPath": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-reference/AnimalApi/obj/",
+        "outputPath": "/Users/floater/workspace/lets-learn-some-dotnet/animal-api-demo-6B5m/AnimalApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/floater/.nuget/NuGet/NuGet.Config"
@@ -37,6 +37,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

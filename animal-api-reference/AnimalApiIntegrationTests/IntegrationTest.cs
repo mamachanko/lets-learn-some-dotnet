@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AnimalApi;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Quibble.Xunit;
 using Xunit;
@@ -20,26 +21,24 @@ namespace AnimalApiIntegrationTests
         public async Task Get_ReturnsAnimals()
         {
             // Arrange
-            // run app and create client
             var httpClient = _factory.CreateClient();
 
             // Act
-            // GET /api/animals
-            var httpResponse = await httpClient.GetAsync("/api/animals");
+            var response = await httpClient.GetAsync("/api/animals");
 
             // Assert
-            // assert 200/Ok
-            httpResponse.EnsureSuccessStatusCode();
-            // assert Content-Type: application/json
+            // 200 OK
+            response.EnsureSuccessStatusCode();
+            // application/json
             Assert.StartsWith(
                 MediaTypeNames.Application.Json,
-                httpResponse.Content.Headers.ContentType.ToString()
+                response.Content.Headers.ContentType.ToString()
             );
-            // assert [🐶, 🐱]
+            // [{🐶}, {🐱}]
             JsonAssert.Equal(
-                @"[{""name"": ""Dog""}, {""name"": ""Cat""}]",
-                await httpResponse.Content.ReadAsStringAsync()
-                );
+                @"[{""name"": ""Dog"", ""id"": 123}, {""name"": ""Cat"", ""id"": 456}]",
+                await response.Content.ReadAsStringAsync()
+            );
         }
     }
 }
