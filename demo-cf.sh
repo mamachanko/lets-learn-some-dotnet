@@ -36,7 +36,6 @@ if ! which rider > /dev/null; then
 fi
 
 cf delete -f animal-api
-cf delete-service -f animal-db
 
 clear
 
@@ -74,29 +73,52 @@ pe "cf push animal-api -p AnimalApi --no-start"
 pe "cf services"
 pe "cf bind-service animal-api animal-db"
 pe "cf start animal-api"
+pe "# Let's GET /api/animals"
+pe "http https://animal-api.apps.pcfone.io/api/animals"
+pe ""
 
 ########################################
 # Prepare for Cloud Foundry deployment #
 ########################################
 
+clear
+pe "# Let's prep for Cloud Foundry deployment"
 pe "# We need packages!"
 pe "dotnet add AnimalApi package Steeltoe.CloudFoundry.Connector.EFCore --version 2.5.1"
 pe "dotnet add AnimalApi package Steeltoe.Common.Hosting --version 2.5.1"
+pe "# visit https://steeltoe.io 🔨🦶"
+pe ""
 
-# Add config provider
-# Add CF hosting
+pe "# We need to make a few code changes too. 🚁"
+pe "rider AnimalApi.sln"
+pe ""
 
-# Update services.AddDbContext
-
-# Update appsettings.json
+# notes:
+#  * Add config provider
+#  * Add CF hosting
+#  * Update services.AddDbContext
+#  * Update appsettings.json
 
 ###########################
 # Deploy to Cloud Foundry #
 ###########################
 
+pe "# Now with the changes in place, let's deploy again."
 pe "cf push animal-api -p AnimalApi"
+pe "# And GET /api/animals"
+pe "http https://animal-api.apps.pcfone.io/api/animals"
+pei "# 🐶 & 🐱 in the ⛅ !"
+pe ""
 
-# connect to db
+pe "# Wait! The 🐙 is missing!"
+pe ""
+
+clear
+pe "# This is our one and only commit 💪"
+pe "git add ."
+pe "git commit --message \"Make fit for cloud\""
+git clean -fxd
+pei ""
 
 ############
 # The end. #
