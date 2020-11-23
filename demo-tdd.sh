@@ -7,7 +7,8 @@ set -eo pipefail
 source demo-magic.sh
 source ~/.profile
 
-: ${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-XXXX)"}
+DEMO_PROMPT="🐙 ❯ "
+: "${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-tdd-XXXX)"}"
 
 if ! docker ps > /dev/null; then
   echo "docker is not running"
@@ -29,11 +30,12 @@ if ! which rider > /dev/null; then
   exit 1;
 fi
 
+clear
+
 #########
 # Intro #
 #########
 
-clear
 pe "# Let's build something with .NET! 👷 🚧"
 pe "# How about an API that returns animals? 🐶 🐱"
 pei ""

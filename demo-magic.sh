@@ -39,7 +39,7 @@ COLOR_RESET="\033[0m"
 C_NUM=0
 
 # prompt and command color which can be overriden
-DEMO_PROMPT="🐙 >_ "
+: ${DEMO_PROMPT:="🐙 >_ "}
 DEMO_CMD_COLOR=$GREEN
 DEMO_COMMENT_COLOR=$PURPLE
 
