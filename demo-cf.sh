@@ -70,8 +70,9 @@ pe ""
 # Demonstrate unsuccessful Cloud Foundry deployment #
 #####################################################
 
-pe "cf create-service elephantsql turtle animal-db"
 pe "cf push animal-api -p AnimalApi --no-start"
+pe "cf services"
+pe "cf bind-service animal-api animal-db"
 pe "cf start animal-api"
 
 ########################################
@@ -93,7 +94,7 @@ pe "dotnet add AnimalApi package Steeltoe.Common.Hosting --version 2.5.1"
 # Deploy to Cloud Foundry #
 ###########################
 
-cf push animal-api -p AnimalApi
+pe "cf push animal-api -p AnimalApi"
 
 # connect to db
 
