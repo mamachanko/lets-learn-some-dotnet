@@ -1,15 +1,16 @@
-Let's TDD an API with <mark>.NET</mark>
+Let's deploy a <mark>.NET</mark> thing To CF
 
 animal api
 🐙 🐶 🐱
+<br>in the 🌥
 || colorVar:alt
 
-**bootstrap**<br>_static data_<br><mark>database</mark>
+**deploy 🙅‍♀️**<br>_steeltoe_ <br><mark>deploy 🙆🏽‍♂️</mark>
 
-https://media.giphy.com/media/l2Je3LK91ePwCvoyY/giphy.gif
+<mark>⛅ ❯ letsgo</mark>
+
+https://media.giphy.com/media/YA5oXxbyy8N5C/source.gif
 
 Thanks!
-🙇🏻‍♂️
+🙇️
 || colorVar:alt
-
-
