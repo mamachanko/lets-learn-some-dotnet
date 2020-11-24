@@ -10,6 +10,8 @@ animal api
 <mark>⛅ ❯  </mark>
 to the command line!
 
+https://media.giphy.com/media/xT3i12DSQVKQWgZRq8/source.mp4
+
 <a href="https://steeltoe.io">steeltoe</a>
 || colorVar:alt
 
