@@ -77,6 +77,7 @@ clear
 pe "# Let's deploy the animal API to CF."
 pe "cf apps"
 pe "cf push animal-api -p AnimalApi --no-start"
+clear
 pe "cf services"
 pe "cf bind-service animal-api animal-db"
 pe "cf start animal-api || true"
@@ -112,8 +113,10 @@ pe ""
 # Deploy to Cloud Foundry #
 ###########################
 
+clear
 pe "# Now with the changes in place, let's deploy again."
 pe "cf push animal-api -p AnimalApi"
+clear
 pe "# And GET /api/animals"
 pe "http https://animal-api.apps.pcfone.io/api/animals"
 pei "# 🐶 & 🐱 in the ⛅ !"
@@ -124,16 +127,17 @@ pe "cf env animal-api | grep -i 'db_host\|password\|username'"
 pe ""
 
 clear
+git init > /dev/null
 pe "# This is our one and only commit 💪"
 pe "git add ."
 pe "git commit --message \"Make fit for cloud\""
-git clean -fxd
 pei ""
 
 ############
 # The end. #
 ############
 
+clear
 pe "# We're done"
 pei "# Thank you 🙇"
 
