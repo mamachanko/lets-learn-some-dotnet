@@ -7,7 +7,11 @@ animal api
 
 **deploy 🙅‍♀️**<br>_steeltoe_ <br><mark>deploy 🙆🏽‍♂️</mark>
 
-<mark>⛅ ❯ letsgo</mark>
+<mark>⛅ ❯  </mark>
+to the command line!
+
+<a href="https://steeltoe.io">steeltoe</a>
+|| colorVar:alt
 
 https://media.giphy.com/media/YA5oXxbyy8N5C/source.gif
 

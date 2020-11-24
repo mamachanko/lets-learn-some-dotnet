@@ -10,6 +10,8 @@ source ~/.profile
 DEMO_PROMPT="⛅ ❯ "
 : "${DEMO_DIR:="$(mktemp -d "$(pwd)"/animal-api-demo-cf-XXXX)"}"
 
+docker rm -f animaldb || true
+
 if ! cf target > /dev/null; then
   echo "not logged into cf"
   exit 1;
@@ -46,8 +48,8 @@ clear
 pe "# Picking up where we left off"
 p "cd animal-api"
 cp -r animal-api-reference-tdd/* $DEMO_DIR
-rm -rf **/bin **/obj
 cd "$DEMO_DIR"
+rm -rf **/bin **/obj
 pe "tree"
 pe ""
 
@@ -57,10 +59,12 @@ pe "# Is it running?"
 pe "docker run --rm -it --network host --env PGPASSWORD=secret --env PGUSER=postgres --env PGHOST=127.0.0.1 postgres:13.1-alpine psql --command '\l'"
 pe ""
 
+clear
 pe "# Are we green still?"
 pe "dotnet test"
 pe ""
 
+clear
 pe "# Let's see it in action"
 pe "dotnet run --project AnimalApi"
 pe ""
@@ -69,12 +73,17 @@ pe ""
 # Demonstrate unsuccessful Cloud Foundry deployment #
 #####################################################
 
+clear
+pe "# Let's deploy the animal API to CF."
+pe "cf apps"
 pe "cf push animal-api -p AnimalApi --no-start"
 pe "cf services"
 pe "cf bind-service animal-api animal-db"
-pe "cf start animal-api"
-pe "# Let's GET /api/animals"
-pe "http https://animal-api.apps.pcfone.io/api/animals"
+pe "cf start animal-api || true"
+pe "cf apps"
+pe "# The app does not start. 🤔"
+pe "cf logs animal-api --recent"
+pe "# It can't connect to the database. 🔌"
 pe ""
 
 ########################################
@@ -82,7 +91,7 @@ pe ""
 ########################################
 
 clear
-pe "# Let's prep for Cloud Foundry deployment"
+pe "# Let's fix that by making the animal API fit for the cloud."
 pe "# We need packages!"
 pe "dotnet add AnimalApi package Steeltoe.CloudFoundry.Connector.EFCore --version 2.5.1"
 pe "dotnet add AnimalApi package Steeltoe.Common.Hosting --version 2.5.1"
@@ -111,6 +120,7 @@ pei "# 🐶 & 🐱 in the ⛅ !"
 pe ""
 
 pe "# Wait! The 🐙 is missing!"
+pe "cf env animal-api | grep -i 'db_host\|password\|username'"
 pe ""
 
 clear

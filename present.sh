@@ -2,5 +2,7 @@
 
 set -euo pipefail
 
-kitty_theme try snazzy tmux
+: "${THEME:="snazzy"}"
+
+kitty_theme try "$THEME" tmux
 
