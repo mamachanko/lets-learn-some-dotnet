@@ -8,7 +8,7 @@ source demo-magic.sh
 source ~/.profile
 
 DEMO_PROMPT="📚 ❯ "
-: "${DEMO_DIR:="$(mktemp -d "$(pwd)"/demo-basics-XXXX)"}"
+: "${DEMO_DIR:="$(mktemp -d "$(pwd)"/basics-demo-XXXX)"}"
 
 if ! which dotnet > /dev/null; then
   echo "dotnet is not on the PATH"
