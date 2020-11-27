@@ -62,6 +62,11 @@ p "mkdir animal-compendium"
 p "cd animal-compendium"
 cd "$DEMO_DIR"
 
+clear
+pe "dotnet new --list"
+pe ""
+
+clear
 pe "# We need a 'solution'."
 pe "dotnet new solution --name AnimalCompendium"
 rm -rf -- **/bin **/obj
