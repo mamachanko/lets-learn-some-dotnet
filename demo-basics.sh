@@ -26,104 +26,129 @@ clear
 # Intro #
 #########
 
-pe "# What is it ❓"
-pe "# What you can do ❗"
-pe "# How you do it ❓❗"
-pe ""
-pe "# 🤷"
+pe "# So .NET ❓"
+pei "# 🤷"
 pei "dotnet --help"
+pe ""
+
+
+############
+# The idea #
+############
+
+pe "# Let's build something"
+pe "# How about an 'animal compendium' that can identify animals by feature?"
+pe "# echo barks | animal-compendium"
+pei "# 🐶"
+pe "# echo walks | animal-compendium"
+pei "# 🐶"
+pei "# 🐱"
 
 # the idea:
 # identify animals by feature
 # read a feature from stdin
 # write matching animals to stdout
 
-# the cli part in C#
-# the identification part in F#
+#############
+# The build #
+#############
 
-dotnet new solution --name AnimalCompendium
-tree
+pe "# Let's build the cli part with C#"
+pei "# and the identification bit with F#."
+pe ""
 
-dotnet new console --name Cli
-dotnet sln AnimalCompendium.sln add Cli
-tree
+clear
+p "mkdir animal-compendium"
+p "cd animal-compendium"
+cd "$DEMO_DIR"
 
-dotnet run --project Cli
+pe "# We need a 'solution'."
+pe "dotnet new solution --name AnimalCompendium"
+rm -rf -- **/bin **/obj
+pe "tree"
 
-dotnet new classlib --name Lib --language "F#"
-dotnet sln AnimalCompendium.sln add Lib
-dotnet add Cli reference Lib
-tree
+pe "dotnet new console --name animal-compendium"
+pe "dotnet sln AnimalCompendium.sln add animal-compendium"
+rm -rf -- **/bin **/obj
+pe "tree"
+pe ""
 
+clear
+pe "dotnet run --project animal-compendium"
+pe ""
 
-rider AnimalCompendium.sln
+pe "rider AnimalCompendium.sln"
 
-# using System;
-# using System.Linq;
-# using static AnimalCompendiumLib.AnimalCompendium;
-# 
-# namespace AnimalCompendiumCli
-# {
-#     class Program
-#     {
-#         static void Main(string[] args)
-#         {
-#             var feature = Console.ReadLine();
-#             var animals = Identify(feature);
-# 
-#             if (animals.Any())
-#             {
-#                 foreach (var animal in animals)
-#                 {
-#                     Console.WriteLine(animal);
-#                 }
-#             }
-#             else
-#             {
-#                 Console.Error.WriteLine("Could not identify any animals.");
-#             }
-#         }
-#     }
-# }
+cat <<EOF | pbcopy
+using System;
+using static animal-compendium.AnimalCompendium;
 
-# namespace AnimalCompendiumLib
-# 
-# module AnimalCompendium =
-# 
-#     let dog = "🐶"
-#     let cat = "🐱"
-#     let octopus = "🐙"
-# 
-#     let Identify (feature: string): List<string> =
-#         match feature with
-#         | "walks" -> [ cat; dog ]
-#         | "barks" -> [ dog ]
-#         | "meows" -> [ cat ]
-#         | "swims" -> [ octopus ]
-#         | _ -> []
-# 
+namespace AnimalCompendium.animal-compendium
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var feature = Console.ReadLine();
 
+            foreach (var animal in Identify(feature))
+            {
+                Console.WriteLine(animal);
+            }
+        }
+    }
+}
+EOF
 
-echo walks | dotnet run --project Cli
+pe "dotnet new classlib --name animal-lib --language 'F#'"
+pe "dotnet sln AnimalCompendium.sln add animal-lib"
+pe "dotnet add animal-compendium reference animal-lib"
+rm -rf -- **/bin **/obj
+pe "tree"
 
-dotnet publish --self-contained --runtime osx-x64 --output ./out
+cat <<EOF | pbcopy
+namespace lib
 
-echo walks | ./out/Cli
-echo barks | ./out/Cli
-echo swims | ./out/Cli
+module AnimalCompendium =
 
-# Demo
-# * dotnet cli
-# * create an c# console app
-# * IDEs
-# * create an f# library
-# * run it
-# * publish it
+    let dog = "🐶"
+    let cat = "🐱"
+    let octopus = "🐙"
+
+    let Identify feature =
+        match feature with
+        | "barks" -> [ dog ]
+        | "meows" -> [ cat ]
+        | "walks" -> [ cat; dog ]
+        | "swims" -> [ octopus ]
+        | _ -> []
+
+EOF
+
+p "# Back to the IDE 🚁"
+
+clear
+pe "echo barks | dotnet run --project animal-compendium"
+pe "echo walks | dotnet run --project animal-compendium"
+pe ""
+
+clear
+pe "# Let's publish a binary."
+pe "dotnet publish --self-contained --runtime osx-x64 --output ./build"
+p 'export PATH="$(pwd)/build:$PATH"'
+export PATH="$(pwd)/build:$PATH"
+pe ""
+
+pe "echo walks | animal-compendium"
+pe "echo barks | animal-compendium"
+pe "echo swims | animal-compendium"
+pe ""
 
 ############
 # The end. #
 ############
 
-pe "# We're done"
+clear
+p "# We're done"
 pei "# Thank you 🙇"
 
