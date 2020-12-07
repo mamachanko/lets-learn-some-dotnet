@@ -46,11 +46,82 @@ const config = {
           textVar: 'title',
           scale: 3.5,
           type: 'text',
-          text: `<h1>Let's deploy a <mark>.NET</mark> thing To CF</h1>
-            <p>press <mark>f</mark> to go fullscreen</p>
-          `
+          text: `<h1>Let's deploy a <mark>.NET</mark> thing To CF</h1>`
         }
-     ]
+     ],
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1>Animal API</h1>🐙🐶🐱`
+       }
+     ],
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1><strong>DEPLOY 🙅‍♀️</strong></h1><br><h1><em>steeltoe</em></h1><br><h1><mark>deploy 🙆🏽‍♂️</mark</h1>`,
+         colorVar: 'alt'
+       }
+     ],
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1><mark>⛅ ❯  </mark></h1>to the command line!`
+       }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'video',
+         url: `https://media.giphy.com/media/xT3i12DSQVKQWgZRq8/source.mp4`
+       }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1><a href="https://steeltoe.io">steeltoe</a></h1>`,
+         colorVar: 'alt'
+       }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'image',
+         url: `https://media.giphy.com/media/YA5oXxbyy8N5C/source.gif`
+       }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1>Thanks!</h1>🙇️`,
+         colorVar: 'alt'
+       }
+      ]
     }
   ]
 }
