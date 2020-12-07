@@ -1,18 +1,3 @@
-//Let's TDD an API with <mark>.NET</mark>
-//
-//animal api
-//🐙 🐶 🐱
-//|| colorVar:alt
-//
-//**bootstrap**<br>_static data_<br><mark>database</mark>
-//
-//https://media.giphy.com/media/l2Je3LK91ePwCvoyY/giphy.gif
-//
-//Thanks!
-//🙇🏻‍♂️
-//|| colorVar:alt
-//
-//
 const config = {
   colors: 'flo',
   fonts: 'heron',
@@ -39,10 +24,50 @@ const config = {
           textVar: 'title',
           scale: 3.5,
           type: 'text',
-          text: `<h1>Let's TDD an API with <mark>.NET</mark> </h1>
-            <p>press <mark>f</mark> to go fullscreen</p>
-          `
+          text: `<h1>Let's TDD an API with <mark>.NET</mark></h1>`
         }
+      ]
+    },
+    {
+      blocks: [
+        {
+          textVar: 'title',
+          scale: 3.5,
+          type: 'text',
+          text: `<h1>Animal API</h1>🐙🐶🐱`,
+          colorVar: 'sec'
+        }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1><strong>BOOTSTRAP</strong></h1><br><h1><em>STATIC DATA</em></h1><br><h1>DATABASE</h1>`,
+         colorVar: 'alt'
+       }
+     ],
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'image',
+         url: 'https://media.giphy.com/media/l2Je3LK91ePwCvoyY/giphy.gif'
+       }
+      ]
+    },
+    {
+     blocks: [
+       {
+         textVar: 'title',
+         scale: 3.5,
+         type: 'text',
+         text: `<h1>Thanks!</h1>🙇️`,
+       }
       ]
     }
   ]
